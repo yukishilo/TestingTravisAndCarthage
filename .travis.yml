@@ -1,0 +1,18 @@
+language: objective-c
+osx_image: xcode10
+xcode_project: DemoProject.xcodeproj
+cache:
+  directories:
+  - Carthage
+before_install:
+  - brew update
+  - brew upgrade xctool
+  - brew install carthage
+  - carthage update --cache-builds
+xcode_scheme: iOS
+env:
+  global:
+  - IOS_SCHEME="MyFrameworkiOS"
+  - IOS_SDK=iphonesimulator10.0
+  matrix:
+    - DESTINATION="OS=11.2,name=iPhone X" SCHEME="$SCHEME_IOS_FRAMEWORK" SDK="$IOS_SDK"
